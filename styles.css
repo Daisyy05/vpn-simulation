@@ -407,6 +407,18 @@ section.page img {
     margin: 20px 0;
 }
 
+.vpn-diagram {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    margin: 30px auto;
+    display: block;
+    background: var(--bg-soft);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 10px 0;
+}
+
 .video-container { margin-top: 30px; }
 .video-container iframe {
     width: 100%;

@@ -51,7 +51,38 @@
             </div>
         </div>
 
-        <img src="assets/images/vpn.png" alt="Diagram of a device tunnelling encrypted traffic through a VPN server">
+        <svg class="vpn-diagram" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of a device sending data through an encrypted tunnel to a VPN server, then out to the internet">
+            <defs>
+                <linearGradient id="tunnelGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="var(--purple)" stop-opacity="0.55"/>
+                    <stop offset="100%" stop-color="var(--blue)" stop-opacity="0.55"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Tunnel -->
+            <rect x="120" y="88" width="240" height="44" rx="22" fill="url(#tunnelGradient)"/>
+            <line x1="140" y1="110" x2="340" y2="110" stroke="var(--cyan)" stroke-width="2" stroke-dasharray="6 6"/>
+            <text x="240" y="76" text-anchor="middle" font-size="13" fill="var(--text-dim)" font-family="Inter, sans-serif">Encrypted Tunnel</text>
+
+            <!-- Device -->
+            <rect x="20" y="80" width="60" height="60" rx="10" fill="var(--card)" stroke="var(--card-border)"/>
+            <text x="50" y="118" text-anchor="middle" font-size="26">💻</text>
+            <text x="50" y="160" text-anchor="middle" font-size="13" fill="var(--text)" font-family="Inter, sans-serif">Your Device</text>
+
+            <!-- VPN server -->
+            <circle cx="400" cy="110" r="40" fill="rgba(79,140,255,0.12)" stroke="var(--blue)" stroke-width="1.5"/>
+            <text x="400" y="120" text-anchor="middle" font-size="26">🔒</text>
+            <text x="400" y="168" text-anchor="middle" font-size="13" fill="var(--text)" font-family="Inter, sans-serif">VPN Server</text>
+
+            <!-- Arrow to internet -->
+            <line x1="440" y1="110" x2="560" y2="110" stroke="var(--card-border)" stroke-width="2"/>
+            <polygon points="560,104 572,110 560,116" fill="var(--card-border)"/>
+
+            <!-- Internet -->
+            <circle cx="600" cy="110" r="26" fill="var(--card)" stroke="var(--card-border)"/>
+            <text x="600" y="118" text-anchor="middle" font-size="20">🌐</text>
+            <text x="600" y="160" text-anchor="middle" font-size="13" fill="var(--text)" font-family="Inter, sans-serif">Internet</text>
+        </svg>
 
         <div class="video-container">
             <h2>Watch How a VPN Works</h2>
