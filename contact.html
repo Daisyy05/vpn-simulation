@@ -7,19 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
     <header>
-        <h1>VPN Simulation</h1>
+        <div class="brand">
+            <span class="shield-mark">🛡</span>
+            <span>VPN <span class="gradient-text">Simulation</span></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
                 <li><a href="simulation.html">Simulation</a></li>
                 <li><a href="security.html">Security</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
-        <div class="dark-mode-toggle">
+        <div class="header-right">
             <label class="switch">
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider"></span>
@@ -27,16 +30,15 @@
         </div>
     </header>
 
-    <section class="contact">
+    <section class="page contact">
         <h2>Contact Us</h2>
-        <p class="floating">Email: support@vpnsimulation.com</p>
-        <p class="floating">Have questions or feedback? Reach out to us!</p>
+        <p>Email: support@vpnsimulation.com<br>Have questions or feedback? Reach out to us!</p>
 
         <form id="contactForm">
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
             <textarea id="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
+            <button class="btn" type="submit">Send Message</button>
         </form>
 
         <div class="social-links">
@@ -44,6 +46,7 @@
             <a href="mailto:sahanasangi1909@gmail.com">📧 Email</a>
         </div>
     </section>
+
+    <footer>VPN Simulation — a learning project by Sahana.</footer>
 </body>
 </html>
-

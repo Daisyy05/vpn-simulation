@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPN Security</title>
+    <title>Security - VPN Simulation</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
     <header>
-        <h1>VPN Simulation</h1>
+        <div class="brand">
+            <span class="shield-mark">🛡</span>
+            <span>VPN <span class="gradient-text">Simulation</span></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
                 <li><a href="simulation.html">Simulation</a></li>
-                <li><a href="security.html">Security</a></li>
+                <li><a href="security.html" class="active">Security</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div class="dark-mode-toggle">
+        <div class="header-right">
             <label class="switch">
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider"></span>
@@ -27,9 +30,30 @@
         </div>
     </header>
 
-    <section class="security">
+    <section class="page security">
+        <div class="report-card">
+            <div class="report-card-header">
+                <div>
+                    <h3>VPN Security Assessment</h3>
+                    <div class="report-meta" id="report-timestamp">Last scanned: —</div>
+                </div>
+                <span class="report-status-chip">✅ 4/4 Checks Passed</span>
+            </div>
+            <table class="report-table">
+                <thead>
+                    <tr><th>Control</th><th>Method</th><th>Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Data Encryption</td><td>AES-256-GCM (Web Crypto API, live)</td><td class="report-pass">Pass</td></tr>
+                    <tr><td>IP Masking</td><td>Simulated exit-node substitution</td><td class="report-pass">Pass</td></tr>
+                    <tr><td>No-Log Policy</td><td>No activity persisted to storage</td><td class="report-pass">Pass</td></tr>
+                    <tr><td>Kill Switch</td><td>Simulated auto-disconnect on failure</td><td class="report-pass">Pass</td></tr>
+                </tbody>
+            </table>
+        </div>
+
         <h2>Why Use a VPN?</h2>
-        <p class="floating">VPNs provide **strong security** and **privacy** for your online activities. Here’s how:</p>
+        <p>VPNs provide strong security and privacy for your online activities. Here's how:</p>
 
         <div class="security-features">
             <div class="feature" onclick="showFeature('encryption')">
@@ -53,13 +77,11 @@
             </div>
         </div>
 
-        <div id="feature-details">
-            <h2>Click on a feature to learn more!</h2>
-        </div>
+        <div id="feature-details">Click on a feature to learn more!</div>
 
-        <h2>🔓 **Hacker Simulation** 🔥</h2>
-        <p>Click the button below to see how a hacker can **steal data** when there's no VPN, and how a VPN **protects** it!</p>
-        <button onclick="startHackerAttack()">Start Hacker Simulation</button>
+        <h2>Hacker Simulation</h2>
+        <p>Click the button below to see how a hacker can steal data when there's no VPN, and how a VPN protects it.</p>
+        <button class="btn hacker-btn" onclick="startHackerAttack()">Start Hacker Simulation</button>
 
         <div id="hacker-simulation">
             <div class="user">👤 You</div>
@@ -68,7 +90,9 @@
             <div class="vpn-server hidden">🔒 VPN Server</div>
             <div class="data encrypted hidden">🔐 Encrypted Data</div>
         </div>
+        <p id="packet-output" class="cipher-text"></p>
     </section>
+
+    <footer>VPN Simulation — a learning project by Sahana.</footer>
 </body>
 </html>
-

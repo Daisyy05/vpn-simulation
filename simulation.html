@@ -3,23 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPN Simulation</title>
+    <title>Simulation - VPN Simulation</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
     <header>
-        <h1>VPN Simulation</h1>
+        <div class="brand">
+            <span class="shield-mark">🛡</span>
+            <span>VPN <span class="gradient-text">Simulation</span></span>
+        </div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
-                <li><a href="simulation.html">Simulation</a></li>
+                <li><a href="simulation.html" class="active">Simulation</a></li>
                 <li><a href="security.html">Security</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div class="dark-mode-toggle">
+        <div class="header-right">
             <label class="switch">
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider"></span>
@@ -27,13 +30,22 @@
         </div>
     </header>
 
-    <section class="vpn-simulation">
+    <section class="page vpn-simulation">
         <h2>Simulate a VPN Connection</h2>
         <p>Enter your IP address and click "Connect to VPN" to see how a VPN secures your connection.</p>
 
-        <label for="user-ip">Your IP Address:</label>
-        <input type="text" id="user-ip" placeholder="e.g., 192.168.1.1">
-        <button onclick="connectToVPN()">Connect to VPN</button>
+        <div class="sim-controls">
+            <input type="text" id="user-ip" placeholder="e.g., 192.168.1.1">
+            <button class="mini-btn" type="button" onclick="fillMyIP()">Use my real IP</button>
+            <button class="mini-btn" type="button" onclick="validateIP()">Check IP</button>
+        </div>
+        <p class="status-msg" id="ip-check-status"></p>
+
+        <div class="sim-controls">
+            <label for="sim-server-select" style="color:var(--text-dim); font-size:0.9rem; align-self:center;">Connect via</label>
+            <select class="server-select" id="sim-server-select"></select>
+            <button class="btn" onclick="connectToVPN()">Connect to VPN</button>
+        </div>
 
         <div id="simulation-container">
             <div class="internet">🌐 Internet</div>
@@ -44,6 +56,9 @@
         </div>
 
         <p id="vpn-status"></p>
+        <p id="cipher-output" class="cipher-text"></p>
     </section>
+
+    <footer>VPN Simulation — a learning project by Sahana.</footer>
 </body>
 </html>

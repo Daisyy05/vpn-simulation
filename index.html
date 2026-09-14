@@ -7,31 +7,173 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
     <header>
-        <h1>VPN Simulation</h1>
+        <div class="brand">
+            <span class="shield-mark">🛡</span>
+            <span>VPN <span class="gradient-text">Simulation</span></span>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="how-it-works.html">How It Works</a></li>
                 <li><a href="simulation.html">Simulation</a></li>
                 <li><a href="security.html">Security</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <div class="dark-mode-toggle">
+        <div class="header-right">
+            <div class="status-pill" id="header-status">
+                <span class="status-dot"></span>
+                <span id="header-status-text">Not Connected</span>
+            </div>
             <label class="switch">
                 <input type="checkbox" id="darkModeToggle">
                 <span class="slider"></span>
             </label>
         </div>
     </header>
-    
 
     <section class="hero">
-        <h2>Experience a Secure VPN Connection</h2>
-        <p class="floating">Simulate encrypted tunnels, secure data transfer, and more.</p>
-        <a href="simulation.html" class="btn">Get Started</a>
+        <div class="hero-copy">
+            <h2>Experience a<br><span class="gradient-text">Secure VPN Connection</span></h2>
+            <p>Protect your data, hide your IP and browse the internet with more privacy and security.</p>
+        </div>
+        <svg class="hero-orbit" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="130" cy="130" r="110" fill="none" stroke="rgba(155,123,255,0.25)" stroke-width="1"/>
+            <circle cx="130" cy="130" r="80" fill="none" stroke="rgba(79,140,255,0.3)" stroke-width="1"/>
+            <circle cx="130" cy="130" r="50" fill="url(#shieldGlow)"/>
+            <defs>
+                <radialGradient id="shieldGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#9b7bff" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#4f8cff" stop-opacity="0.6"/>
+                </radialGradient>
+            </defs>
+            <text x="130" y="140" text-anchor="middle" font-size="34">🛡️</text>
+            <circle cx="238" cy="60" r="16" fill="#12183f" stroke="rgba(155,123,255,0.4)"/>
+            <text x="238" y="66" text-anchor="middle" font-size="14">🌐</text>
+            <circle cx="238" cy="200" r="16" fill="#12183f" stroke="rgba(79,140,255,0.4)"/>
+            <text x="238" y="206" text-anchor="middle" font-size="14">☁️</text>
+            <circle cx="30" cy="180" r="16" fill="#12183f" stroke="rgba(53,214,232,0.4)"/>
+            <text x="30" y="186" text-anchor="middle" font-size="14">💻</text>
+        </svg>
     </section>
+
+    <section class="dashboard">
+        <div class="dashboard-grid">
+
+            <!-- Column 1: connection controls -->
+            <div>
+                <div class="panel-heading">
+                    <span class="icon-badge">📶</span>
+                    <div>
+                        <h3>VPN Connection</h3>
+                        <span>Your online privacy matters</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-row">
+                        <div class="card-label">🌐 Your IP Address</div>
+                        <button class="mini-btn" id="check-ip-btn">Refresh</button>
+                    </div>
+                    <div class="card-value" id="home-user-ip">Detecting…</div>
+                    <div class="card-sub" id="home-ip-geo"></div>
+                    <p class="status-msg" id="home-ip-status"></p>
+                </div>
+
+                <div class="card">
+                    <div class="card-label" style="margin-bottom:8px;">🌍 Connect via</div>
+                    <select class="server-select" id="home-server-select"></select>
+                </div>
+
+                <button class="btn" id="home-connect-btn" onclick="connectHomeVPN()">🔌 Connect to VPN →</button>
+                <p class="status-msg" id="home-connect-status"></p>
+                <p class="card-sub" style="margin-top:10px;">Real public IP lookup (ipify + ipapi) — needs internet access to resolve live.</p>
+            </div>
+
+            <!-- Column 2: status cards -->
+            <div>
+                <div class="card">
+                    <div class="card-row">
+                        <div>
+                            <div class="card-label">VPN Status</div>
+                            <div class="status-title status-bad" id="home-status-title">Disconnected</div>
+                            <div class="card-sub" id="home-status-sub">Your data is not protected</div>
+                        </div>
+                        <span class="icon-badge" style="background:rgba(255,84,112,0.12); color:var(--red);">🛡</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-row">
+                        <div>
+                            <div class="card-label">📍 Your IP Address</div>
+                            <div class="card-value" id="home-original-ip">Detecting…</div>
+                            <div class="card-sub">(Original IP)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-row">
+                        <div>
+                            <div class="card-label">🖥 VPN IP Address</div>
+                            <div class="card-value" id="home-vpn-ip">--</div>
+                            <div class="card-sub" id="home-vpn-ip-sub">(Not connected)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 3: map + data status -->
+            <div>
+                <div class="map-card">
+                    <svg viewBox="0 0 260 160" xmlns="http://www.w3.org/2000/svg" id="world-dots"></svg>
+                </div>
+                <div class="card data-status" id="home-data-status">
+                    <span class="icon-badge">🔓</span>
+                    <div>
+                        <div class="card-label">Data Status</div>
+                        <div class="status-title status-bad" id="home-data-title">Unsecured</div>
+                        <div class="card-sub" id="home-data-sub">Your data can be intercepted</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="feature-strip">
+        <div>
+            <div class="feature-icon" style="background:rgba(79,140,255,0.12); color:var(--blue);">🛡</div>
+            <h4>IP Masking</h4>
+            <p>Hide your real IP address</p>
+        </div>
+        <div>
+            <div class="feature-icon" style="background:rgba(47,214,106,0.12); color:var(--green);">🔒</div>
+            <h4>Data Encryption</h4>
+            <p>Keep your data safe</p>
+        </div>
+        <div>
+            <div class="feature-icon" style="background:rgba(155,123,255,0.12); color:var(--purple);">🕶</div>
+            <h4>No Log Policy</h4>
+            <p>Your activity stays private</p>
+        </div>
+        <div>
+            <div class="feature-icon" style="background:rgba(255,176,32,0.12); color:var(--amber);">⚡</div>
+            <h4>Kill Switch</h4>
+            <p>Prevents data leaks</p>
+        </div>
+    </section>
+
+    <section class="trust-badges">
+        <div class="trust-badge"><span>🔒</span> 256-bit AES Encryption</div>
+        <div class="trust-badge"><span>🛡</span> Privacy-by-Design</div>
+        <div class="trust-badge"><span>✅</span> Open &amp; Auditable Code</div>
+        <div class="trust-badge"><span>🎓</span> Academic Demo Project</div>
+    </section>
+
+    <footer>VPN Simulation — a learning project by Sahana. No real network traffic is captured or transmitted.</footer>
 </body>
 </html>
